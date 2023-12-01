@@ -14,6 +14,8 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 # Install packages
 install.packages("dplyr")
 library(dplyr)
+install.packages("magrittr")
+library(magrittr)
 
 ```
 
@@ -93,6 +95,26 @@ hist(ExpPos_posttrial_GAD)
 # Summary of Experiment data
 dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
 summary(dataCA1Experiment)
+```
+
+```{r}
+# First attempt to clean gender data
+install.packages("dplyr")
+library(dplyr)
+dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
+dataCA1Control %>%
+  select(gender) %>%
+  filter(gender == 'female' | gender == 'F')
+
+  
+ 
+```
+```{r}
+# Next attempt to clean gender data
+dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
+dataCA1Control$gender <- replace(dataCA1Control$gender, gender == "F","female")
+gender
+
 ```
 
 

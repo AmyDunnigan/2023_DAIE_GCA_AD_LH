@@ -2,9 +2,7 @@
 title: "R Notebook"
 output:
   html_notebook: default
-  html_document:
-    df_print: paged
-  pdf_document: default
+
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
@@ -13,17 +11,13 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 ```{r}
 # Install packages
 install.packages("dplyr")
+install.packages("tidyverse")
 library(dplyr)
 
 ```
+Hypothesis: No change in GAD scores following VR therapy
 
-```{r}
-# Import and view data
-dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
-summary(dataCA1Control)
-
-```
-
+Ho = 0
 
 ```{r}
 # Show all values
@@ -39,18 +33,21 @@ CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
 CtrPos_pretrial_GAD
 
 ```
-
+Histogram shows data once cleaned with negative value, one value in the control pre-trial set and one in the experiment post trial set, is removed is normally distributed and unimodal. This is true for all four datasets once data is cleaned.
 
 ```{r}
 # Histogram of positive pretrial GAD values
+pretrial_GAD <- c(dataCA1Control$pretrial_GAD)
+pretrial_GAD
+CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
+CtrPos_pretrial_GAD
 hist(CtrPos_pretrial_GAD)
+title(main=Positive Pretrial GAD, sub=NULL, xlab=NULL, ylab=GAD Score)
 
 ```
-```{r}
-# Check data is numeric
-is.numeric(dataCA1Control)
 
-```
+
+
 ```{r}
 # Histogram of post-trial GAD
 dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
@@ -93,6 +90,23 @@ hist(ExpPos_posttrial_GAD)
 # Summary of Experiment data
 dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
 summary(dataCA1Experiment)
+```
+```{r}
+# Converting gender to numeric
+dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
+dataCA1Control$gender <- replace(dataCA1Control$gender, dataCA1Control$gender == "F","female")
+dataCA1Control$gender[dataCA1Control$gender=='female'] <- 1
+dataCA1Control$gender[dataCA1Control$gender=='male'] <- 2
+
+dataCA1Control$gender <- as.numeric(dataCA1Control$gender)
+dataCA1Control$gender
+
+
+```
+```{r}
+library ("tidyverse")
+geom_density(CtrPos_pretrial_GAD)
+
 ```
 
 
