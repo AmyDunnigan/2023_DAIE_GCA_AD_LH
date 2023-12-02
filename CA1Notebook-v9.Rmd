@@ -1,0 +1,112 @@
+---
+title: "R Notebook"
+output:
+  html_notebook: default
+
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+```{r}
+# Install packages
+install.packages("dplyr")
+install.packages("tidyverse")
+library(dplyr)
+
+```
+Hypothesis: No change in GAD scores following VR therapy
+
+Ho = 0
+
+```{r}
+# Show all values and check if numeric
+pretrial_GAD <- c(dataCA1Control$pretrial_GAD)
+pretrial_GAD
+is.numeric(dataCA1Control$pretrial_GAD)
+
+```
+```{r}
+# Boxplot showing outlier in control pre-trial GAD scores
+boxplot(dataCA1Control$pretrial_GAD)
+```
+
+
+```{r}
+# Get positive values
+CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
+CtrPos_pretrial_GAD
+
+```
+Histogram shows data once cleaned with negative value, one value in the control pre-trial set and one in the experiment post trial set, is removed is normally distributed and unimodal. This is true for all four datasets once data is cleaned.
+
+```{r}
+# Histogram of positive pretrial GAD values
+pretrial_GAD <- c(dataCA1Control$pretrial_GAD)
+pretrial_GAD
+CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
+CtrPos_pretrial_GAD
+hist(CtrPos_pretrial_GAD,
+     main = "Control positive pre-trial GAD scores",
+     xlab = "Positive pre-trial GAD scores")
+
+
+```
+
+
+
+```{r}
+# Check if control post-trial data is numeric
+dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
+Ctrposttrial_GAD <- c(dataCA1Control$posttrial_GAD)
+is.numeric(Ctrposttrial_GAD)
+
+```
+```{r}
+# Check if experiment pre-trial data is numeric
+dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
+Exppretrial_GAD <- c(dataCA1Experiment$pretrial_GAD)
+is.numeric(Exppretrial_GAD)
+
+```
+```{r}
+# Check experiment post-trial data is numeric
+dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
+Expposttrial_GAD <- c(dataCA1Experiment$posttrial_GAD)
+is.numeric(Expposttrial_GAD)
+
+```
+```{r}
+# Boxplot of experiment post-trial data showing outlier
+boxplot(Expposttrial_GAD)
+```
+
+
+```{r}
+# Get positive experiment post-trial values
+ExpPos_posttrial_GAD <- Expposttrial_GAD[Expposttrial_GAD >= 0]
+ExpPos_posttrial_GAD
+is.numeric(ExpPos_posttrial_GAD)
+```
+```{r}
+# Histogram of postive experiment post trial values
+hist(ExpPos_posttrial_GAD,
+main = "Experiment positive post-trial GAD scores",
+xlab = "Positive post-trial GAD scores")
+
+```
+
+```{r}
+# Summary of Experiment data
+dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
+summary(dataCA1Experiment)
+```
+
+```
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
