@@ -1,5 +1,6 @@
 ---
-title: "R Notebook"
+title: "Data Analytics for Immersive Environments Pair Project"
+subtitle: "Luka Hrg, Amy Dunnigan"
 output:
   html_notebook: default
   html_document:
@@ -7,16 +8,90 @@ output:
   pdf_document: default
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+<!-- This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.  -->
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+<!-- Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.  -->
+
 ```{r}
 # Install packages
 install.packages("dplyr")
 library(dplyr)
 
 ```
+### Contents
+Abstract ............................ 1\
+Introduction ....................... 1\
+Method ............................. 1\
+Results ............................. 1\
+Discussion ........................ 1\
+References ....................... 1\
 
+### Abstract
+
+#### Aim and Rationale
+The Aim of this study is to research a possibility of a more effective way to treat anxiety 
+disorder using virtual headsets and environments.
+
+#### Participants and setting
+The study consisted of 180 participants divided into control and experimental groups. The participants were 
+randomly sampled from the clinic client list and randomly assigned to the 2 groups. The participants were 
+all ages between 18 - 40 years.
+
+#### Experiment design
+The 2 groups underwent 12 weeks of treatment for 50 minutes per week with a therapist. 
+During that time the participants underwent either traditional CBT or used the VR app.
+
+#### Results gathering
+The results were gathered using the self-report mechanism at the beginning and end of the study.
+
+#### Findings/Implications
+
+
+### Introduction
+#### Topic and context
+As of 2019, according to the World Health Organization, approximately 301 million people worldwide suffer
+from anxiety disorders. Anxiety disorders are a group of mental disorders characterized by feelings of anxiety
+and fear. These feelings may cause physical symptoms such as a racing heart and shakiness. Anxiety is a
+natural response to stress, but for individuals with an anxiety disorder, the fear or nervousness does not
+go away and can get worse over time, affecting daily activities such as job performance, school-work, and
+relationships.\
+Triggers for anxiety disorders can range from environmental factors, genetics, brain chemistry, medical
+factors, to a combination of these. There are several types of anxiety disorders, including generalized
+anxiety disorder, panic disorder, specific phobias, agoraphobia, social anxiety disorder, and separation anxiety
+disorder. Treatment options for these disorders include a combination of psychotherapy, behavioral therapy,
+and medications.\
+Virtual Reality has emerged as a transformative tool in the treatment of anxiety disorders, offering immersive
+therapeutic experiences that can simulate real-world scenarios in a controlled environment. By exposing
+patients to stimuli or situations that trigger anxiety, VR allows for gradual habituation and desensitization,
+making it a potent complement to traditional cognitive-behavioral therapies. For instance, Opris et al. (2012)
+demonstrated that VR exposure therapy (VRET) significantly reduced post-traumatic stress disorder symptoms in 
+military personnel. Similarly, a study by Maples-Keller et al. (2017) found that VRET can be as
+effective as in vivo exposure for the treatment of acrophobia. Furthermore, Lindner et al. (2017) showcased
+the potential of using VR in treating social anxiety disorders, particularly in enhancing public speaking
+skills. The continued integration of VR into therapeutic practices showcases its potential to revolutionize the
+treatment landscape for anxiety disorders.
+
+
+#### Rationale
+The rationale for this research is the use VR for treatment of different types of anxiety disorders. As there 
+is no research with the general public and all types of anxiety disorders in mind this research plans to fill 
+that void of knowledge. The research existing prior to this involved specific types of anxiety disorder that
+appears in soldiers or something like arachnophobia. As that is the case further investigating the possibility 
+that VR is better at curing anxiety disorder would be useful knowledge as it would enable treatment to be more 
+effective. Contrary to the usefulness of that knowledge the study was conducted in a singular facility in one 
+place and as such there is no guarantee no mater how convincing the result that there will not be discrepancies
+as different parts of the world could be different and make the whole conclusion and point of the research 
+worthless in a part of the world although that would be minimized as there exist different research that would 
+support the outcome by confirming the minimal difference between people around the world. As the outcomes of the 
+other anxiety disorder based research had an outcome where the VR was the more effective solution that is also 
+expected here and as such we can roughly predict the possible outcome before the research is conducted.
+
+####  Hypothesis
+As mentioned above the educated guess for the result of this research would be a result where the group using the 
+VR treatment would get much better treatment results than the group using traditional treatment methods.
+
+### Method
+#### Participants
 ```{r}
 # Import and view data
 dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
@@ -96,8 +171,8 @@ summary(dataCA1Experiment)
 ```
 
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+<!-- Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*. -->
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+<!-- When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file). -->
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+<!-- The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed. -->
