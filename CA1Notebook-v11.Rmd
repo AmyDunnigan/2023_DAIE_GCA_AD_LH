@@ -42,7 +42,7 @@ Histogram shows data once cleaned with negative value, one value in the control 
 
 ```{r}
 # Histogram of positive pretrial GAD values
-pretrial_GAD <- c(dataCA1Control$pretrial_GAD)
+pretrial_GAD <- c(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$pretrial_GAD)
 pretrial_GAD
 CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
 CtrPos_pretrial_GAD

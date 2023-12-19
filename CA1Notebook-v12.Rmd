@@ -1,4 +1,5 @@
 ---
+
 title: "R Notebook"
 output:
   html_document:
@@ -10,19 +11,10 @@ output:
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-```{r}
-# Install packages
-library(dplyr)
 
-```
-Hypothesis: No change in GAD scores following VR therapy
-
-Ho = 0
 
 ```{r}
-# Show all values and check if numeric
-pretrial_GAD <- c(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$pretrial_GAD)
-pretrial_GAD
+# Check if pre-trial values numeric
 is.numeric(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$pretrial_GAD)
 
 ```
@@ -42,7 +34,7 @@ Histogram shows data once cleaned with negative value, one value in the control 
 
 ```{r}
 # Histogram of positive pretrial GAD values
-pretrial_GAD <- c(dataCA1Control$pretrial_GAD)
+pretrial_GAD <- c(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$pretrial_GAD)
 pretrial_GAD
 CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
 CtrPos_pretrial_GAD
@@ -72,8 +64,7 @@ A p value below .05 leads us to reject the null hypothesis that the data are nor
 
 ```{r}
 # Check if control post-trial data is numeric
-dataCA1Control <- read.csv("GROUP_3_2023_GCA_RESULTS_CONTROL.csv")
-Ctrposttrial_GAD <- c(dataCA1Control$posttrial_GAD)
+Ctrposttrial_GAD <- c(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$posttrial_GAD)
 is.numeric(Ctrposttrial_GAD)
 
 ```
