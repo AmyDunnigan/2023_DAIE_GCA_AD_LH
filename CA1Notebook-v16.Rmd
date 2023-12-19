@@ -8,6 +8,13 @@ output:
 
 ---
 
+The hypothesis we are testing is whether VR treatment had any effect on GAD scores:
+
+Null hypothesis is equal to 0
+Alternative hypothesis is not equal to 0
+
+---
+
 We started by cleaning the data first checking the relevant data are numeric
 
 
