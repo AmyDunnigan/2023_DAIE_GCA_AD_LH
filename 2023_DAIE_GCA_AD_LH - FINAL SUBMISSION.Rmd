@@ -1,0 +1,253 @@
+---
+
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+
+---
+
+<h1>Contents</h1>
+
+     - Abstract 
+
+     - Introduction 
+
+     - Method 
+
+     - Results 
+
+     - Discussion 
+
+     - References 
+
+<h1>Abstract</h1>
+
+<h3>Aim and Rationale</h3>
+
+The Aim of this study is to research a possibility of a more effective way to treat anxiety 
+disorder using virtual headsets and environments.
+
+<h3>Participants and setting</h3>
+
+The study consisted of 180 participants divided into control and experimental groups. The participants were randomly sampled from the clinic client list and randomly assigned to the 2 groups. The participants were all ages between 18 - 40 years.
+
+<h3>Experiment design</h3>
+
+The 2 groups underwent 12 weeks of treatment for 50 minutes per week with a therapist. 
+During that time the participants underwent either traditional CBT or used the VR app.
+
+<h3>Results gathering</h3>
+
+The results were gathered using the self-report mechanism at the beginning and end of the study.
+
+<h3>Findings</h3>
+
+This report finds that the null hypothesis should be accepted as the VR app had no evident effect on Generalized Anxiety Disorder 7-item scale scores
+
+Null hypothesis is equal to 0
+
+Alternative hypothesis is not equal to 0
+
+<h1>Introduction</h1>
+
+As of 2019, according to the World Health Organization, approximately 301 million people worldwide suffer from anxiety disorders. Anxiety disorders are a group of mental disorders characterized by feelings of anxiety and fear. These feelings may cause physical symptoms such as a racing heart and shakiness. Anxiety is a natural response to stress, but for individuals with an anxiety disorder, the fear or nervousness does not go away and can get worse over time, affecting daily activities such as job performance, school-work, and relationships.
+
+Triggers for anxiety disorders can range from environmental factors, genetics, brain chemistry, medical factors, to a combination of these. There are several types of anxiety disorders, including generalized anxiety disorder, panic disorder, specific phobias, agoraphobia, social anxiety disorder, and separation anxiety disorder. Treatment options for these disorders include a combination of psychotherapy, behavioral therapy,and medications.
+
+The report below will test the null hypopthesis that the VR treatment had no effect on Generalized Anxiety Disorder 7-item scale scores
+
+
+<h1>Method</h1>
+
+<h3>Participants</h3>
+
+This report was produced by students as part of the ‘Data Analytics for Immersive Environments’ module of DkIT’s ‘Masters in Computer Animation’ Springboard course.
+
+<h3>Design</h3>
+
+The report analyses the design and results of an experiment evaluating the efficacy of VR interventions in the treatment of Generalized Anxiety Disorder (GAD) using descriptive and inferential statistical methods.
+
+<h3>Materials</h3>
+
+R studio was used to calculate the statistics and generate the report.
+
+<h3>Procedure</h3>
+
+The data were cleaned and analysed using descriptive methods e.g. boxplots and histograms. The Anderson Darling test was run to test for a normal distribution of the data. The data were then examined to test whether VR treatment had showed any effect on participants’ ‘GAD 7-item scale’ scores.
+
+
+<h1>Results</h1>
+
+We started by cleaning the data to confirm the relevant data are numeric.
+
+
+```{r}
+# Check if pre-trial values numeric
+is.numeric(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$pretrial_GAD)
+
+```
+
+
+```{r}
+# Check if control post-trial data is numeric
+Ctrposttrial_GAD <- c(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$posttrial_GAD)
+is.numeric(Ctrposttrial_GAD)
+
+```
+
+
+```{r}
+# Check if experiment pre-trial data is numeric
+dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
+Exppretrial_GAD <- c(dataCA1Experiment$pretrial_GAD)
+is.numeric(Exppretrial_GAD)
+
+```
+
+
+```{r}
+# Check experiment post-trial data is numeric
+dataCA1Experiment <- read.csv("GROUP_3_2023_GCA_RESULTS_EXPERIMENTAL.csv")
+Expposttrial_GAD <- c(dataCA1Experiment$posttrial_GAD)
+is.numeric(Expposttrial_GAD)
+
+```
+
+There were outliers in the pre-trial control data and the post-trial experiment data with negative values.
+
+```{r}
+# Boxplot showing outlier in control pre-trial GAD scores
+boxplot(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$pretrial_GAD)
+```
+
+```{r}
+# Boxplot showing outlier in experiment post-trial GAD scores
+boxplot(Expposttrial_GAD)
+```
+We cleaned the data and examined histograms of the positive data to confirm these were normally distributed.
+
+```{r}
+# Get positive values
+CtrPos_pretrial_GAD <- pretrial_GAD[pretrial_GAD >= 0]
+CtrPos_pretrial_GAD
+
+```
+The histograms show data once cleaned are normally distributed and unimodal. 
+
+```{r}
+# Histogram of post-trial GAD values for control group
+Ctrposttrial_GAD <- c(GROUP_3_2023_GCA_RESULTS_CONTROL.csv$posttrial_GAD)
+Ctrposttrial_GAD
+hist(Ctrposttrial_GAD,
+     main = "Control Post-trial GAD scores",
+     xlab = "Post-trial GAD scores")
+
+
+```
+
+```{r}
+# Get positive experiment post-trial values
+ExpPos_posttrial_GAD <- Expposttrial_GAD[Expposttrial_GAD >= 0]
+ExpPos_posttrial_GAD
+is.numeric(ExpPos_posttrial_GAD)
+```
+
+```{r}
+# Histogram of postive experiment post trial values
+hist(ExpPos_posttrial_GAD,
+main = "Experiment positive post-trial GAD scores",
+xlab = "Positive post-trial GAD scores")
+
+```
+
+Because the sample sizes were relatively small, we also ran Anderson Darling tests for normality. These produced unexpected results, possibly because the test can be affected by ties in the data. This needs further investigation. 
+
+```{r}
+# Anderson Darling test for normality - Positive pretrial GAD values for control data
+
+#install and load nortest library
+install.packages('nortest')
+library(nortest)
+
+ad.test(CtrPos_pretrial_GAD)
+```
+
+Anderson-Darling normality test for positive pre-trial GAD values for control data
+
+data:  CtrPos_pretrial_GAD
+A = 1.0512, p-value = 0.008746
+
+A p value less than .05 indicates positive pre-trial GAD values for the control data are normally distributed 
+
+
+```{r}
+# Anderson Darling test for normality - Post-trial GAD values for control data
+
+#load nortest library
+library(nortest)
+
+ad.test(Ctrposttrial_GAD)
+```
+A p value greater than .05 indicates the post-trial GAD values for control data are not normally distributed. This is an unexpected result, possibly because the test can be affected by ties in the data. 
+
+
+```{r}
+# Anderson Darling test for normality - Pre-trial GAD values for experiment data
+
+#load nortest library
+library(nortest)
+
+ad.test(Exppretrial_GAD)
+```
+A p value less than .05 indicates positive Post-trial GAD values for experiment data are normally distributed
+
+
+```{r}
+# Anderson Darling test for normality - Positive Post-trial GAD values for experiment data
+
+#load nortest library
+library(nortest)
+
+ad.test(ExpPos_posttrial_GAD)
+```
+A p value less than .05 indicates positive Post-trial GAD values for experiment data are normally distributed
+
+We decided to proceed with the t-tests as the histograms clearly show the control and experiment positive data are normally distributed even though the Anderson Darling test for the control data contradicted this. This requires further investigation possibly by running Shapiro Wilk tests although Anderson Darling is more suited to smaller sample sizes.
+
+
+```{r}
+# Two Sample t-test
+t.test(Ctrposttrial_GAD, ExpPos_posttrial_GAD,var.equal = TRUE)
+
+```
+<h1>Discussion</h1>
+
+<h3>Limitations</h3>
+
+The experiment could have been improved by conducting a double blind experiment where therapists did not know which group the patients were in.
+
+The self-reporting mechanism could be considered an extraneous variable as this type of reporting may yield subjective results.
+
+The fact that there were negative values in the data is concerning especially for a small sample size. It may indicate a lack of care on the part of the inputters or a lack of clarity in the reporting instructions.
+
+
+<h3>Findings</h3>
+
+The p value is greater than .05 which indicates we should accept the null hypothesis that VR treatment had no effect on Generalized Anxiety Disorder 7-item scale scores.
+
+We can say with 95% confidence the true difference in the means between the control and experiment groups is between -1.53 and 0.14.
+
+<h1>References</h1>
+
+[1] Opris, D., Pintea, S., García-Palacios, A., Botella, C., Szamosközi, Ş., & David, D. (2012). Virtual reality exposure therapy in anxiety disorders: a quantitative meta-analysis. Depression and Anxiety, 29 (2), 85-93. (Accessed: 4 October 2023)
+
+[2] Maples-Keller, J. L., Bunnell, B. E., Kim, S. J., & Rothbaum, B. O. (2017). The Use of Virtual Reality Technology in the Treatment of Anxiety and Other Psychiatry Disorders. Harvard Review of Psychiatry, 25 (3), 103-113. (Accessed: 4 October 2023)
+
+[3] Lindner, P., Miloff, A., Hamilton, W., Reuterskiöld, L., Andersson, G., Powers, M. B., & Carlbring, P. (2017). Creating state of the art, next-generation Virtual Reality exposure therapies for anxiety disorders using consumer hardware platforms: design considerations and future directions. Cognitive Behaviour Therapy, 46 (5), 404-420. (Accessed: 5 October 2023)
+
+---
+
+
+
